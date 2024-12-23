@@ -1,0 +1,58 @@
+{
+  "app": {
+    "name": "Real-Time Chat App",
+    "version": "1.0.0",
+    "description": "A real-time chat application with NestJS backend",
+    "port": 3000,
+    "environment": "development",
+    "logging": {
+      "level": "debug",
+      "enableRequestLogs": true
+    }
+  },
+  "database": {
+    "mongoUri": "mongodb://localhost:27017/chat-app",
+    "retryAttempts": 5,
+    "retryDelay": 3000
+  },
+  "auth": {
+    "jwt": {
+      "secret": "your-secret-key",
+      "expiresIn": "7d"
+    },
+    "password": {
+      "saltRounds": 10
+    }
+  },
+  "websocket": {
+    "enabled": true,
+    "path": "/ws",
+    "cors": {
+      "origin": ["http://localhost:3001", "http://localhost:19006"],
+      "methods": ["GET", "POST"]
+    }
+  },
+  "rateLimit": {
+    "enabled": true,
+    "windowMs": 60000,
+    "maxRequests": 100
+  },
+  "security": {
+    "cors": {
+      "allowedOrigins": ["http://localhost:3001", "http://localhost:19006"],
+      "allowedMethods": ["GET", "POST", "PUT", "DELETE"],
+      "allowedHeaders": ["Authorization", "Content-Type"]
+    },
+    "helmet": {
+      "contentSecurityPolicy": true,
+      "dnsPrefetchControl": true,
+      "frameguard": { "action": "deny" },
+      "hsts": { "maxAge": 31536000, "includeSubDomains": true }
+    }
+  },
+  "cache": {
+    "enabled": true,
+    "ttl": 300,
+    "store": "memory"
+  }
+}
