@@ -2,9 +2,10 @@ export interface UserProp {
   _id: string;
   firstName: string;
   lastName: string;
+  userName: string;
   email: string;
   password: string;
-  roles: string[];
+  role: string;
   otp?: string;
   createdAt?: Date;
 }

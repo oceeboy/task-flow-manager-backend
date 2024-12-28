@@ -20,7 +20,7 @@ export class EmailService {
     const mailOptions = {
       from: process.env.MAILER_EMAIL_FOR_NODEMAILER,
       to: email,
-      subject: 'Reset Your Password - TaskFlow Manager',
+      subject: 'Reset Your Password -TaskFlow Manager',
       html: `
           <div style="font-family: 'Arial', sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px;">
             <div style="text-align: center; margin-bottom: 20px;">
@@ -60,7 +60,7 @@ export class EmailService {
     const mailOptions = {
       from: process.env.MAILER_EMAIL_FOR_NODEMAILER,
       to: email,
-      subject: 'Vaildate your Email- TaskFlow Manager',
+      subject: 'Vaildate your Email -TaskFlow Manager',
       html: `
           <div style="font-family: 'Arial', sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px;">
             <div style="text-align: center; margin-bottom: 20px;">
@@ -89,4 +89,44 @@ export class EmailService {
 
     await this.transporter.sendMail(mailOptions);
   }
+
+  // to log event thats happens for changes to the client email
+  async profileUpdateChangesToMail(
+    email: string,
+    name: string,
+    content: string,
+  ) {
+    const mailOptions = {
+      from: process.env.MAILER_EMAIL_FOR_NODEMAILER,
+      to: email,
+      subject: 'Profile Updated -TaskFlow Manager',
+      html: `
+         <div style="font-family: 'Arial', sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px;">
+            <div style="text-align: center; margin-bottom: 20px;">
+              <img src="TASK_FLOW_MANAGER" alt="TASK_FLOW_LOGO" style="max-width: 150px;" />
+            </div>
+            <h2 style="color: #333; text-align: center;">Reset Your Password</h2>
+            <h2> Hi ${name} </h2>
+            <p style="color: #555; line-height: 1.6; text-align: center;">
+              ${content} if this changes were not made by you click the bellow 
+            </p>
+            <div style="text-align: center; margin: 20px 0;">
+              <button href="" style="display: inline-block; padding: 10px 20px; font-size: 18px; font-weight: bold; color: #ffffff; background-color: #007bff; border-radius: 4px;">
+              Verify email
+              </button>
+            </div>
+            <p style="color: #777; font-size: 14px; text-align: center;">
+              This OTP is valid for 10 minutes. Do not share it with anyone.
+            </p>
+            <hr style="border: 0; border-top: 1px solid #e0e0e0; margin: 20px 0;" />
+            <p style="color: #999; font-size: 12px; text-align: center;">
+              © ${new Date().getFullYear()} TaskFlow Manager. All rights reserved.
+            </p>
+          </div>
+      `,
+    };
+    await this.transporter.sendMail(mailOptions);
+  }
 }
+
+// this email service will need more improvement on the ui which i will forcus on later.

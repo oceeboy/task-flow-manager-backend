@@ -1,6 +1,6 @@
 {
   "app": {
-    "name": "Real-Time Chat App",
+    "name": "task-flow-manager",
     "version": "1.0.0",
     "description": "A real-time chat application with NestJS backend",
     "port": 3000,

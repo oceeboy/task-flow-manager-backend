@@ -6,12 +6,14 @@ import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './auth/auth.module';
 import { RefreshTokenModule } from './refresh-token/refresh-token.module';
-import { EmailService } from './email/email.service';
+
 import { EmailModule } from './email/email.module';
-import { UserService } from './user/user.service';
+
 import { UserModule } from './user/user.module';
 // import { ServeStaticModule } from '@nestjs/serve-static';
 // import { join } from 'path';
+import { TaskModule } from './task/task.module';
+import { AuditLogModule } from './audit-log/audit-log.module';
 
 @Module({
   imports: [
@@ -20,15 +22,17 @@ import { UserModule } from './user/user.module';
     }),
 
     MongooseModule.forRoot(process.env.MONGO_URI),
+    UserModule,
     AuthModule,
     RefreshTokenModule,
     EmailModule,
-    UserModule,
+    TaskModule,
+    AuditLogModule,
     // ServeStaticModule.forRoot({
     //   rootPath: join(__dirname, '..', 'public'), // Serve files from the 'public' directory
     // }),
   ],
   controllers: [AppController],
-  providers: [AppService, EmailService, UserService],
+  providers: [AppService], // only the appservic should be here
 })
 export class AppModule {}

@@ -1,5 +1,5 @@
 import { ForgotPasswordDto } from './dto/forgot-password.dto';
-import { VerifyOtpDto } from './dto/verify-otp.dto';
+
 import {
   ConflictException,
   Injectable,
@@ -11,7 +11,7 @@ import { Model } from 'mongoose';
 // import * as nodemailer from 'nodemailer';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
-import { User } from 'src/auth/interface/user.interface';
+
 import { LogOutResponse, TokenResponse, UserData } from 'src/types';
 
 import { RegisterUserDto } from './dto/register-user.dto';
@@ -19,11 +19,13 @@ import { LoginUserDto } from './dto/login-user.dto';
 import { RefreshTokenService } from 'src/refresh-token/refresh-token.service';
 import { RefreshTokenDto } from './dto/refresh-token.dto';
 import { EmailService } from 'src/email/email.service';
+import { User } from 'src/user/interface/user.interface';
+import { VerifyOtpDto } from './dto/verify-otp.dto';
 
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectModel('User') private readonly userModel: Model<User>,
+    @InjectModel('User') private userModel: Model<User>,
     private readonly jwtService: JwtService,
     private readonly refreshTokenService: RefreshTokenService,
     private readonly emailService: EmailService,
@@ -31,9 +33,9 @@ export class AuthService {
 
   // Generate access token
   generateAccessToken(user: User): string {
-    const payload = { email: user.email, sub: user._id, roles: user.roles };
+    const payload = { email: user.email, sub: user._id, role: user.role };
     return this.jwtService.sign(payload, {
-      expiresIn: process.env.ACCESSTOKENEXPIRATION || '5m',
+      expiresIn: process.env.ACCESSTOKENEXPIRATION,
     }); // Access token expires in 5 minutes
   }
 
@@ -41,7 +43,7 @@ export class AuthService {
   generateRefreshToken(user: User): string {
     const payload = { sub: user._id };
     return this.jwtService.sign(payload, {
-      expiresIn: process.env.REFRESHTOKENEXPIRATION || '7d',
+      expiresIn: process.env.REFRESHTOKENEXPIRATION,
     }); // Refresh token expires in 7 days
   }
 
@@ -134,7 +136,8 @@ export class AuthService {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
-      roles: user.roles,
+      role: user.role,
+      userName: user.userName,
     };
   }
 

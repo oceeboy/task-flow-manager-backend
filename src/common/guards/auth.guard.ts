@@ -31,18 +31,7 @@ export class AuthGuard implements CanActivate {
       request.user = decoded; // Attach the decoded token payload to the request
 
       // Check if the user has a "user" or "admin" role
-      if (
-        request.user &&
-        request.user.roles &&
-        (request.user.roles.includes('user') ||
-          request.user.roles.includes('admin'))
-      ) {
-        return true; // Grant access if the user has a valid role
-      } else {
-        throw new UnauthorizedException(
-          'Access restricted to authorized users',
-        );
-      }
+      return true;
     } catch (error) {
       throw new UnauthorizedException(
         `Invalid or expired token: ${error.message}`,
