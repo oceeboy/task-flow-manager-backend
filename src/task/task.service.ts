@@ -6,7 +6,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model, Types } from 'mongoose';
+import { FilterQuery, Model, Types } from 'mongoose';
 import { ITask } from './schemas/task.schema';
 import { UpdateTaskDto } from './dto/update-task.dto';
 import { CreateTaskDto } from './dto/create-task.dto';
@@ -92,12 +92,22 @@ export class TaskService {
   }
 
   // Get All Tasks with Filters
-  async getAllTasks(filters: any, currentUser: User): Promise<ITask[]> {
-    const query: any = {};
+
+  async getAllTasks(filters: any, currentUser: string): Promise<ITask[]> {
+    const query: FilterQuery<ITask> = {};
+
+    const user = await this.validateUser(currentUser);
 
     // Add filters
     if (filters.assignedTo) query.assignedTo = filters.assignedTo;
-    if (currentUser.role !== 'admin') query.createdBy = currentUser._id;
+    if (filters.status) query.status = filters.status;
+    if (filters.priority) query.priority = filters.priority;
+    // Add filters
+
+    if (user.role !== 'admin') {
+      // Allow users to see tasks they created or are assigned to
+      query.$or = [{ createdBy: user._id }, { assignedTo: user._id }];
+    }
     if (filters.status) query.status = filters.status;
     if (filters.priority) query.priority = filters.priority;
 

@@ -40,7 +40,7 @@ export class TaskController {
   ) {
     return this.taskService.getAllTasks(
       { assignedTo, status, priority },
-      req.user,
+      req.user.sub,
     );
   }
 
