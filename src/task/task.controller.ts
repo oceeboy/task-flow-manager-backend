@@ -12,11 +12,11 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { TaskService } from './task.service';
-import { AuthGuard } from 'src/common/guards/auth.guard';
-import { RolesGuard } from 'src/common/guards/roles.guard';
+import { AuthGuard } from '../common/guards/auth.guard';
+import { RolesGuard } from '../common/guards/roles.guard';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
-import { TaskStatus } from 'src/common/constants/task.enum';
+import { TaskStatus } from '../common/constants/task.enum';
 
 @Controller('task')
 @UseGuards(AuthGuard, RolesGuard)
