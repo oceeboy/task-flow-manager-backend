@@ -56,4 +56,9 @@ export class AuditLogController {
     }
     return auditLog;
   }
+
+  @Get('test')
+  async test(): Promise<void> {
+    return;
+  }
 }

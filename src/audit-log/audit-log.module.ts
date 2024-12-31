@@ -2,9 +2,9 @@ import { forwardRef, Module } from '@nestjs/common';
 import { AuditLogService } from './audit-log.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuditLogSchema } from './schemas/audit-log.schema';
-import { TaskModule } from 'src/task/task.module';
+import { TaskModule } from '../task/task.module';
 import { AuditLogController } from './audit-log.controller';
-import { AuthModule } from 'src/auth/auth.module';
+import { AuthModule } from '../auth/auth.module';
 
 @Module({
   imports: [

@@ -1,5 +1,5 @@
 import { Document } from 'mongoose';
-import { Role } from 'src/common/constants/role.enum';
+import { Role } from '../../common/constants/role.enum';
 
 export interface User extends Document {
   _id: string;

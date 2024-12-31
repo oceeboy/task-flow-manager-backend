@@ -10,10 +10,10 @@ import { FilterQuery, Model, Types } from 'mongoose';
 import { ITask } from './schemas/task.schema';
 import { UpdateTaskDto } from './dto/update-task.dto';
 import { CreateTaskDto } from './dto/create-task.dto';
-import { User } from 'src/user/interface/user.interface';
+import { User } from '../user/interface/user.interface';
 
-import { TaskPriority, TaskStatus } from 'src/common/constants/task.enum';
-import { AuditLogService } from 'src/audit-log/audit-log.service';
+import { TaskPriority, TaskStatus } from '../common/constants/task.enum';
+import { AuditLogService } from '../audit-log/audit-log.service';
 
 @Injectable()
 export class TaskService {

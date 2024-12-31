@@ -1,6 +1,6 @@
 import { Schema, Document, Types } from 'mongoose';
-import { TaskPriority, TaskStatus } from 'src/common/constants/task.enum';
-import { User } from 'src/user/interface/user.interface';
+import { TaskPriority, TaskStatus } from '../../common/constants/task.enum';
+import { User } from '../../user/interface/user.interface';
 
 export interface ITask extends Document {
   _id: string;

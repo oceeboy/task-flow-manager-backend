@@ -1,16 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose'; // Import ObjectId explicitly
-import * as mongoose from 'mongoose'; // Import mongoose to use Types.ObjectId
+import { Model } from 'mongoose';
+import * as mongoose from 'mongoose';
 import { RefreshToken } from './interfaces/refresh-token.interface';
-// import { User } from 'src/types/user.interface';
 
 @Injectable()
 export class RefreshTokenService {
   constructor(
     @InjectModel('RefreshToken')
     private readonly refreshTokenModel: Model<RefreshToken>,
-    // @InjectModel('User') private userModel: Model<User>,
   ) {}
 
   async create(

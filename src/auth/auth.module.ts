@@ -3,12 +3,12 @@ import { JwtModule } from '@nestjs/jwt';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 
-import { RefreshTokenModule } from 'src/refresh-token/refresh-token.module';
-import { EmailModule } from 'src/email/email.module';
-import { UserModule } from 'src/user/user.module';
+import { RefreshTokenModule } from '../refresh-token/refresh-token.module';
+import { EmailModule } from '../email/email.module';
+import { UserModule } from '../user/user.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserSchema } from './schemas/user.schema';
-import { TaskModule } from 'src/task/task.module';
+import { TaskModule } from '../task/task.module';
 // import { RefreshTokenSchema } from './schemas/refresh-token.schema';
 
 @Module({

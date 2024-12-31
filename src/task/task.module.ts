@@ -3,10 +3,10 @@ import { forwardRef, Module } from '@nestjs/common';
 import { TaskService } from './task.service';
 import { TaskController } from './task.controller';
 import { TaskSchema } from './schemas/task.schema';
-import { AuthModule } from 'src/auth/auth.module';
-import { UserSchema } from 'src/auth/schemas/user.schema';
-import { AuditLogModule } from 'src/audit-log/audit-log.module';
-import { AuditLogSchema } from 'src/audit-log/schemas/audit-log.schema';
+import { AuthModule } from '../auth/auth.module';
+import { UserSchema } from '../auth/schemas/user.schema';
+import { AuditLogModule } from '../audit-log/audit-log.module';
+import { AuditLogSchema } from '../audit-log/schemas/audit-log.schema';
 
 @Module({
   imports: [

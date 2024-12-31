@@ -13,9 +13,9 @@ import { RegisterUserDto } from '../auth/dto/register-user.dto';
 // import { ForgotPasswordDto } from './dto/forgot-password.dto';
 import { VerifyOtpDto } from '../auth/dto/verify-otp.dto';
 import { User } from './interface/user.interface';
-import { UserData } from 'src/types';
+import { UserData } from '../types';
 import { EditProfileDto } from './dto/edit-profile.dto';
-import { EmailService } from 'src/email/email.service';
+import { EmailService } from '../email/email.service';
 
 @Injectable()
 export class UserService {

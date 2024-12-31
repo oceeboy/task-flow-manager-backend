@@ -1,5 +1,5 @@
 import { Schema } from 'mongoose';
-import { Role } from 'src/common/constants/role.enum';
+import { Role } from '../../common/constants/role.enum';
 
 export const UserSchema = new Schema({
   firstName: { type: String, required: true },

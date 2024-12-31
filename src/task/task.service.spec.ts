@@ -4,7 +4,7 @@ import { getModelToken } from '@nestjs/mongoose';
 import { NotFoundException, ForbiddenException } from '@nestjs/common';
 import mongoose, { Model } from 'mongoose';
 import { ITask } from './schemas/task.schema';
-import { User } from 'src/user/interface/user.interface';
+import { User } from '../user/interface/user.interface';
 
 /*```there are some issues with the code that need to be fixed before the tests can pass. Fix the issues in the code and write the missing test cases.```;*/
 

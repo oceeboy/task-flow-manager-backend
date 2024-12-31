@@ -1,6 +1,6 @@
 import { IsOptional, IsString, IsEnum } from 'class-validator';
 import { Types } from 'mongoose';
-import { TaskPriority, TaskStatus } from 'src/common/constants/task.enum';
+import { TaskPriority, TaskStatus } from '../../common/constants/task.enum';
 
 export class UpdateTaskDto {
   @IsString()
